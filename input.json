@@ -1,0 +1,49 @@
+{
+    "Account": {
+        "Transactions": {
+            "startDate": null,
+            "endDate": null,
+            "Transaction": [
+                null
+            ]
+        },
+        "xmlns": "http://api.rebit.org.in/FISchema/deposit",
+        "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+        "xsi:schemaLocation": "http://api.rebit.org.in/FISchema/deposit../FISchema/deposit.xsd",
+        "linkedAccRef": "c2f2f4b7-c969-4590-a454-8d8278cd80c9",
+        "maskedAccNumber": "XXXXXXXXXXXX8277",
+        "version": "1.2",
+        "type": "deposit",
+        "Profile": {
+            "Holders": {
+                "type": "SINGLE",
+                "Holder": {
+                    "name": "RAJA KUMAR",
+                    "dob": "1999-01-20",
+                    "mobile": "7875584344",
+                    "nominee": "REGISTERED",
+                    "email": "RAJA@GMAIL.COM",
+                    "pan": "XYZPS1387X",
+                    "ckycCompliance": "false"
+                }
+            }
+        },
+        "Summary": {
+            "currentBalance": "21893.22",
+            "currency": "INR",
+            "exchgeRate": "",
+            "balanceDateTime": "2007-03-02T12:48:16+00:00",
+            "type": "SAVINGS",
+            "branch": "CITY UNION BANK",
+            "facility": null,
+            "ifscCode": "XYZ0000004",
+            "micrCode": "10002643",
+            "drawingLimit": "0",
+            "status": "ACTIVE",
+            "Pending": {
+                "amount": "0.0"
+            },
+            "openingDate": "2007-01-30"
+        }
+    }
+}
