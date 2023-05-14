@@ -5,6 +5,7 @@ import (
 	"bytes"
 	"crypto/aes"
 	"crypto/cipher"
+	b64 "encoding/base64"
 	"encoding/hex"
 	"fmt"
 )
@@ -40,21 +41,42 @@ func Ase256Encode(plaintext string, key string, iv string, blockSize int) string
 }
 
 func Ase256Decode(cipherText string, encKey string, iv string) (decryptedString string) {
-	bKey := []byte(encKey)
-	bIV := []byte(iv)
-	cipherTextDecoded, err := hex.DecodeString(cipherText)
-	if err != nil {
-		panic(err)
-	}
+
+	//bKey := []byte(encKey)
+	//bIV := []byte(iv)
+	bKey := make([]byte, 32)
+	str := "AQIDBAUGBwgBAgMEBQYHCAECAwQFBgcIAQIDBAUGBwg="
+	str_copy := copy(bKey, str)
+	fmt.Println(str_copy)
+
+	bIV := make([]byte, 16)
+	striv := "AAAAAAAAAAAAAAAAAAAAAA=="
+	str_copyiv := copy(bIV, striv)
+	fmt.Println(str_copyiv)
+
+	cipherTextDecoded := make([]byte, 1024)
+	strText := cipherText
+	str_copyText := copy(cipherTextDecoded, strText)
+	fmt.Println(str_copyText)
+
+	//cipherTextDecoded := []byte(cipherText)
+	//fmt.Println(cipherTextDecoded)
+	//cipherTextDecoded, err := hex.DecodeString(cipherText)
+	//if err != nil {
+	//	panic(err)
+	//}
 
 	block, err := aes.NewCipher(bKey)
 	if err != nil {
 		panic(err)
 	}
-
+	fmt.Println("After New Cipher")
 	mode := cipher.NewCBCDecrypter(block, bIV)
+	mode1 := cipher.NewCBCDecrypter()
 	mode.CryptBlocks([]byte(cipherTextDecoded), []byte(cipherTextDecoded))
-	return string(cipherTextDecoded)
+	sEnc := b64.StdEncoding.EncodeToString(cipherTextDecoded)
+	//fmt.Println(sEnc)
+	return string(sEnc)
 }
 
 func PKCS5Padding(ciphertext []byte, blockSize int, after int) []byte {
